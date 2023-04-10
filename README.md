@@ -10,23 +10,23 @@ Cmail protects you from phishing attacks by confirming that incoming mails are f
 
 * Home: There are some informations about Cmail.
 
-![Home](jpg)
+![Home](https://raw.githubusercontent.com/bedirhanbudak/Cmail/main/readme/tab_home.png?token=GHSAT0AAAAAACBEXKYASBYP6ZLM4YWB4IOYZBUA7YA)
 
 * Confirmed Mail: There is a guide on how to use Cmail.
 
-![Confirmed Mail](jpg)
+![Confirmed Mail](https://github.com/bedirhanbudak/Cmail/blob/main/readme/tab_cmail.png?raw=true)
 
 * Logs: Logs are saved here.
 
-![Logs](jpg)
+![Logs](https://github.com/bedirhanbudak/Cmail/blob/main/readme/tab_logs.png?raw=true)
 
 * Settings: You can make your own settings.
 
-![Settings](jpg)
+![Settings](https://github.com/bedirhanbudak/Cmail/blob/main/readme/tab_settings.png?raw=true)
 
 * Abut Me: Informations about the project and developer.
 
-![About Me](jpg)
+![About Me](https://github.com/bedirhanbudak/Cmail/blob/main/readme/tab_about_me.png)
 
 ## Contact Me
 
