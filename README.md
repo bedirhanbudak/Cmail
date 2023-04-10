@@ -10,7 +10,7 @@ Cmail protects you from phishing attacks by confirming that incoming mails are f
 
 * Home: There are some informations about Cmail.
 
-![Home](https://github.com/bedirhanbudak/Cmail/blob/main/readme/tab_home.png)
+![Home](https://github.com/bedirhanbudak/Cmail/blob/main/readme/tab_home.png?token=GHSAT0AAAAAACBEXKYAXPOLK65EOXRW5QT2ZBUBIAA)
 
 * Confirmed Mail: There is a guide on how to use Cmail.
 
