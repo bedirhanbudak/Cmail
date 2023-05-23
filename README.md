@@ -1,35 +1,54 @@
-# Cmail
+# Confirmed Mail
 
-Cmail (Confirmed Mail) is a mail verification program.
+Confirmed Mail is a mail confirmation application.
 
 ## Description
 
-Cmail protects you from phishing attacks by confirming that incoming mails are from the orijinal source.
+Cmail (Confirmed Mail) is basically a mail security application that protects you against phishing attacks by confirming that incoming mail comes from the original source.
 
-## Getting Started
+## How Cmail Works?
 
-* Home: There are some informations about Cmail.
+Cmail seeks user’s mail address to check if new mail has arrived. If user receives a new mail, Cmail instantly sends a response mail to the owner of the incoming mail. This response mail contains an information text and a unique code.
 
-![Home](https://github.com/bedirhanbudak/Cmail/blob/main/readme/tab_home.png?token=GHSAT0AAAAAACBEXKYAXPOLK65EOXRW5QT2ZBUBIAA)
+Once the sender replies the response mail with the unique code, Cmail checks this reply and if the confirmation code in the reply matches the original code, it marks the first incoming mail and thus this mail is confirmed and called "Confirmed Mail".
 
-* Confirmed Mail: There is a guide on how to use Cmail.
+## Simple Guide:
 
-![Confirmed Mail](https://github.com/bedirhanbudak/Cmail/blob/main/readme/tab_cmail.png)
+#### `Required` Set protocol addresses: *"Settings" -> "Service Adjustment"*
 
-* Logs: Logs are saved here.
+![Service Adjustment](https://github.com/bedirhanbudak/Cmail/blob/main/readme/service_adjustment.png)
 
-![Logs](https://github.com/bedirhanbudak/Cmail/blob/main/readme/tab_logs.png)
+* You can find the appropriate protocol addresses for your e-mail domain by looking on the internet.
 
-* Settings: You can make your own settings.
+#### `Optional` Delete redundant mails: *"Settings" -> "Inbox Cleaning"*
 
-![Settings](https://github.com/bedirhanbudak/Cmail/blob/main/readme/tab_settings.png)
+![Inbox Cleaning](https://github.com/bedirhanbudak/Cmail/blob/main/readme/inbox_cleaning.png)
 
-* Abut Me: Informations about the project and developer.
+* **DEL information:** Delete all information mails from the sender in your inbox.
+* **DEL not confirmed:** Delete all mails in your inbox except confirmed (marked) ones.
 
-![About Me](https://github.com/bedirhanbudak/Cmail/blob/main/readme/tab_about_me.png)
+#### `Optional` Preferences: "Settings" -> *"Show notifications" & “Auto delete info mail”*
+
+![Preferences](https://github.com/bedirhanbudak/Cmail/blob/main/readme/preferences.png)
+
+* **Show notifications:** If you disable it, you will not see any messagebox and you will not receive notifications when you receive a new confirmed mail.
+
+* **Auto delete info mail:** If you enable it, incoming information mails will be deleted after reading.
+
+#### `Required` Enter your e-mail and password, then run: *“Cmail” -> “Start”*
+
+![Cmail](https://github.com/bedirhanbudak/Cmail/blob/main/readme/cmail.png)
+
+#### `Attention` If you use Gmail, you need to create an application password to use Cmail.
+
+* Creating application passwords: https://support.google.com/mail/answer/185833
 
 ## Contact Me
 
-**LinkedIn:** [bedirhanbudak](https://www.linkedin.com/in/bedirhan-budak/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin.svg)](https://www.linkedin.com/in/bedirhan-budak) [![LinkedIn](https://img.shields.io/badge/Telegram-blue?logo=telegram.svg)](https://t.me/bedirhanb)
 
-**Telegram:** [@bedirhanb](https://t.me/bedirhanb)
+## License & Copyright
+
+**Cmail © 2023 Bedirhan BUDAK**
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
