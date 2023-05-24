@@ -29,7 +29,7 @@ Once the sender replies the response mail with the unique code, Cmail checks thi
 
 #### `Optional` Preferences: "Settings" -> *"Show notifications" & “Auto delete info mail”*
 
-<img src="https://github.com/bedirhanbudak/Cmail/blob/main/readme/preferences.png" alt="Preferences" width="300"/>
+<img src="https://github.com/bedirhanbudak/Cmail/blob/main/readme/preferences.png" alt="Preferences" width="200"/>
 
 * **Show notifications:** If you disable it, you will not see any messagebox and you will not receive notifications when you receive a new confirmed mail.
 
