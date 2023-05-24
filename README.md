@@ -16,20 +16,20 @@ Once the sender replies the response mail with the unique code, Cmail checks thi
 
 #### `Required` Set protocol addresses: *"Settings" -> "Service Adjustment"*
 
-![Service Adjustment](https://github.com/bedirhanbudak/Cmail/blob/main/readme/service_adjustment.png)
+<img src="https://github.com/bedirhanbudak/Cmail/blob/main/readme/service_adjustment.png" alt="Service Adjustment" width="300"/>
 
 * You can find the appropriate protocol addresses for your e-mail domain by looking on the internet.
 
 #### `Optional` Delete redundant mails: *"Settings" -> "Inbox Cleaning"*
 
-![Inbox Cleaning](https://github.com/bedirhanbudak/Cmail/blob/main/readme/inbox_cleaning.png)
+<img src="https://github.com/bedirhanbudak/Cmail/blob/main/readme/inbox_cleaning.png" alt="Inbox Cleaning" width="300"/>
 
 * **DEL information:** Delete all information mails from the sender in your inbox.
 * **DEL not confirmed:** Delete all mails in your inbox except confirmed (marked) ones.
 
 #### `Optional` Preferences: "Settings" -> *"Show notifications" & “Auto delete info mail”*
 
-![Preferences](https://github.com/bedirhanbudak/Cmail/blob/main/readme/preferences.png)
+<img src="https://github.com/bedirhanbudak/Cmail/blob/main/readme/preferences.png" alt="Preferences" width="300"/>
 
 * **Show notifications:** If you disable it, you will not see any messagebox and you will not receive notifications when you receive a new confirmed mail.
 
@@ -37,7 +37,7 @@ Once the sender replies the response mail with the unique code, Cmail checks thi
 
 #### `Required` Enter your e-mail and password, then run: *“Cmail” -> “Start”*
 
-![Cmail](https://github.com/bedirhanbudak/Cmail/blob/main/readme/cmail.png)
+<img src="https://github.com/bedirhanbudak/Cmail/blob/main/readme/cmail.png" alt="Cmail" width="300"/>
 
 #### `Attention` If you use Gmail, you need to create an application password to use Cmail.
 
