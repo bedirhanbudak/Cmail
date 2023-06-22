@@ -1,103 +1,176 @@
 import imaplib
 import smtplib
 import email
-import time
+from email.header import decode_header
 from email.mime.text import MIMEText
+import time
+import re
 import authenticator
 
-# Definitions
-my_mail = "project.confirmedmail@gmail.com"
-my_password = "oqpdhimwwadhbzqe"
+# Variable Definitions
+user_email_address = str()
+user_password = str()
 confirmation_codes = dict()
-logs = {"mail": False, "info": False, "cmail": False, "del_info": False}
-
-# Connect to the email server
-imap_protocol = "imap.gmail.com"
-smtp_protocol = "smtp.gmail.com"
-smtp_port = 587
-mail = imaplib.IMAP4_SSL(imap_protocol)
-mail.login(my_mail, my_password)
+logs = {"email": False, "info": False, "cmail": False, "del_info": False}
+imap_protocol = str()
+smtp_protocol = str()
+smtp_port = int()
 
 
+# Start the program
 def start():
-    time.sleep(0)  # Change it
-    # Select the inbox and search for new emails
-    mail.select("inbox")
-    status, messages = mail.search(None, "UNSEEN")
-    messages = messages[0].split()
+    time.sleep(2)  # Delay to ensure connection
 
-    # Iterate through the new emails and send a response
+    # Connect and login to the e-mail server
+    mail = imaplib.IMAP4_SSL(imap_protocol)
+    mail.login(user_email_address, user_password)
+
+    time.sleep(2)  # Delay to ensure connection
+
+    # Select the inbox and search for new e-mails
+    mail.select("inbox")
+    status, messages = mail.search(None, "RECENT")
+    messages = messages[0].split()  # Get the list of new e-mail IDs
+
+    # Iterate through the new e-mails and send a response
     for email_id in messages:
-        time.sleep(0)  # Change it
-        # Get the email and parse it
+        time.sleep(1)  # Delay to ensure connection
+
+        # Get the e-mail data
         status, email_data = mail.fetch(email_id, "(RFC822)")
+
+        # Assign the e-mail data to email_message
         email_message = email.message_from_bytes(email_data[0][1])
 
-        # Extract the sender's email address information
+        # Extract the sender's e-mail address information
         sender_email = email_message["From"]
         sender_subject = email_message["Subject"]
 
-        # Send the response email
-        if sender_subject != "Re: Confirmed Mail":
-            logs["mail"] = True
-            auth_code = authenticator.create_code()
-            confirmation_codes.update({email_id: auth_code})
-            body = (email_message.get_payload()[0]).get_payload()
-            response_message = MIMEText("The email address is secured by the Confirmed Mail system.\n" +
-                                        "Cmail system is designed to prevent phishing attacks by confirming that incoming mails are from the original source.\n"
-                                        "Reply to this mail to confirm your identity.\n\n" +
-                                        "(!) Do NOT change the header of this email.\n" +
-                                        "(!) Do NOT delete this code: " + auth_code + "\n\n" +
-                                        "You can add any information if you wish.\n\n" +
-                                        "- Creator of Cmail\n\n"
-                                        "-----------------------\n\n"
-                                        "Content of your mail is:\n\n" + body
-                                        )
+        # Check the information e-mail
+        if ": Confirmed Mail" in sender_subject:
+            logs["info"] = True  # Log record for new information e-mail
+            email_content = email_data[0][1].decode("utf-8")
+
+            # Search for the confirmation code present if in the content
+            for confirmed_key, confirmed_code in confirmation_codes.items():
+                if confirmed_code in email_content:  # If code is matched
+                    mail.store(confirmed_key, '+FLAGS', '\\Flagged')
+                    logs["cmail"] = True  # Log record for new Confirmed Mail
+                    if logs["del_info"]:  # If "Auto DEL" is checked
+                        mail.store(email_id, '+FLAGS', '\\Deleted')
+                        logs["info"] = False  # Log disabled for new info
+
+        # Send the response e-mail
+        else:
+            logs["email"] = True  # Log record for new e-mail
+
+            # Generate a confirmation code and add it to the dictionary
+            confirmation_code = authenticator.create_code()
+            confirmation_codes.update({email_id: confirmation_code})
+
+            # Search for name and email pattern in the sender_email
+            match = re.search(r"^(.*?)\s*<|([\w\.-]+)@([\w\.-]+)", sender_email)
+
+            if match:
+                # Extract the captured name or username
+                username = match.group(1) or match.group(2)
+
+                # Decode the username if it is encoded
+                decoded_parts = decode_header(username)
+                decoded_username = ""
+                for part, encoding in decoded_parts:
+                    if isinstance(part, bytes):
+                        decoded_username += part.decode(encoding or "utf-8", errors="ignore")
+                    else:
+                        decoded_username += part
+
+                # Remove leading and trailing whitespace from the username
+                username = decoded_username.strip()
+
+            else:
+                # If no match is found, assign the username as "Unknown"
+                username = "Unknown"
+
+            # Extract the plain text part of the e-mail
+            plain_text_part = None
+            for part in email_message.walk():
+                if part.get_content_type() == 'text/plain':
+                    plain_text_part = part
+                    break
+
+            # Check if a plain text part was found and decode it
+            if plain_text_part:
+                original_content = plain_text_part.get_payload(decode=True).decode("utf-8", errors="ignore")
+            else:
+                original_content = "No plain text content found in the e-mail."
+
+            # Response message content
+            response_message = MIMEText("Hi " + username + ",\n\n"
+                                        "This e-mail address is secured by Confirmed Mail system designed to prevent phishing attacks. "
+                                        "Read more about Cmail: github.com/bedirhanbudak/Cmail\n\n"
+                                        "(!) To confirm your identity, please reply to this e-mail with this code: " + confirmation_code + "\n"
+                                        "(!) If you are not the sender of the e-mail shown below, DO NOT reply to this e-mail!\n\n"
+                                        "Feel free to add any additional information.\n\n"
+                                        "Sincerely yours,\n\n"
+                                        "Confirmed Mail\n\n"
+                                        "------------------------------------------\n\n"
+                                        "The content of your e-mail to be confirmed:\n\n" +
+                                        original_content, _charset="utf-8")
+
+            # Settings for response e-Mail
             response_message["Subject"] = "Confirmed Mail"
-            response_message["From"] = my_mail
+            response_message["From"] = user_email_address
             response_message["To"] = sender_email
+
+            # Send the response e-mail
             server = smtplib.SMTP(smtp_protocol, smtp_port)
             server.starttls()
-            server.login(my_mail, my_password)
+            server.login(user_email_address, user_password)
             server.send_message(response_message)
             server.quit()
 
-        if sender_subject == "Re: Confirmed Mail":
-            logs["info"] = True
-            email_content = email_data[0][1].decode("utf-8")
-            for confirmed_key, confirmed_code in confirmation_codes.items():
-                if confirmed_code in email_content:
-                    mail.store(confirmed_key, '+FLAGS', '\\Flagged')
-                    logs["cmail"] = True
-                    if logs["del_info"]:
-                        mail.store(email_id, '+FLAGS', '\\Deleted')
-                        logs["cmail"] = False
 
+# Delete information e-mails
+def del_info():
+    # Create an IMAP4_SSL object and login to the e-mail server
+    mail = imaplib.IMAP4_SSL(imap_protocol)
+    mail.login(user_email_address, user_password)
 
-def exit_app():
-    mail.close()
+    # Select the "inbox" folder
+    mail.select("inbox")
+
+    # Search for e-mails with the subject ": Confirmed Mail"
+    status, emails = mail.search(None, 'Subject ": Confirmed Mail"')
+
+    # Get the list of e-mail IDs from the search results
+    email_ids = emails[0].split()
+
+    # Iterate over the e-mail IDs and mark them for deletion
+    for email_id in email_ids:
+        mail.store(email_id, '+FLAGS', '\\Deleted')
+
+    # Logout from the e-mail server
     mail.logout()
 
 
-def del_info():
-    mail = imaplib.IMAP4_SSL("imap.gmail.com")
-    mail.login(my_mail, my_password)
+# Delete all e-mails except Confirmed Mails
+def del_email():
+    # Create an IMAP4_SSL object and login to the e-mail server
+    mail = imaplib.IMAP4_SSL(imap_protocol)
+    mail.login(user_email_address, user_password)
 
+    # Select the "inbox" folder
     mail.select("inbox")
-    status, emails = mail.search(None, 'Subject "Confirmed Mail"')
-    email_ids = emails[0].split()
 
-    for email_id in email_ids:
-        mail.store(email_id, '+FLAGS', '\\Deleted')
-
-
-def del_mail():
-    mail = imaplib.IMAP4_SSL("imap.gmail.com")
-    mail.login(my_mail, my_password)
-
-    mail.select("inbox")
+    # Search for emails that are marked as "UNFLAGGED"
     status, emails = mail.search(None, "UNFLAGGED")
+
+    # Get the list of e-mail IDs from the search results
     email_ids = emails[0].split()
 
+    # Iterate over the email IDs and mark them for deletion
     for email_id in email_ids:
         mail.store(email_id, '+FLAGS', '\\Deleted')
+
+    # Logout from the e-mail server
+    mail.logout()
