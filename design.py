@@ -832,7 +832,7 @@ class Ui_Form_cmail(object):
         self.pushButton_linkedIn.setText(_translate("Form_cmail", "C"))
         self.pushButton_gitHub.setText(_translate("Form_cmail", ")"))
         self.pushButton_email.setText(_translate("Form_cmail", "k"))
-        self.pushButton_license.setText(_translate("Form_cmail", "Copyright © 2023 Bedirhan BUDAK"))
+        self.pushButton_license.setText(_translate("Form_cmail", "Copyright © 2023 Bedirhan Budak"))
         self.label_version.setText(_translate("Form_cmail", "<html><head/><body><p align=\"center\"><span style=\" font-size:11pt; font-weight:600;\">Confirmed Mail</span></p><p align=\"center\"><span style=\" font-style:italic;\">Demo Version</span></p></body></html>"))
         self.tabWidget_cmail.setTabText(self.tabWidget_cmail.indexOf(self.tab_info), _translate("Form_cmail", "Info"))
 
