@@ -57,7 +57,7 @@ Cmail seeks the user’s e-mail address to check for recent e-mails. If a new e-
 
 ## Phishing E-mail Prevention System: Confirmed Mail
 
-Read the project's thesis for all the details: [Confirmed Mail](https://raw.githubusercontent.com/posquit0/link)
+<a href="https://github.com/bedirhanbudak/Cmail/blob/main/Confirmed_Mail.pdf"><img src="https://github.com/bedirhanbudak/Cmail/blob/main/readme/thesis_cover.png" alt="Confirmed Mail" width="556"></a>
 
 ## Contact Me
 
