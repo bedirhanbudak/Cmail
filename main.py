@@ -191,7 +191,7 @@ class Cmail(QtWidgets.QMainWindow, Ui_Form_cmail):
                                   self.thread.delete_email, self.uiDesign.pushButton_allDEL.setEnabled,
                                   "All e-mails deleted except Confirmed Mails.")
 
-    # CheckBoxes
+    # Checkboxes
     def check_notification(self):
         if self.uiDesign.checkBox_notifications.isChecked():
             self.add_log("Notifications will be displayed.")
@@ -332,15 +332,15 @@ class LoopThread(QThread):
 
     # Break the Loop
     def stop(self):
-        self.running = False  # Terminates the thread
+        self.running = False  # Terminate the loop
 
     # Delete information e-mails
     def delete_info(self):
-        cmail.del_info()  # Calls the del_info function from cmail.py
+        cmail.del_info()  # Call the del_info function from cmail.py
 
     # Delete all e-mails except flagged ones
     def delete_email(self):
-        cmail.del_email()  # Calls the del_email function from cmail.py
+        cmail.del_email()  # Call the del_email function from cmail.py
 
 
 # Show App
