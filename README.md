@@ -33,7 +33,7 @@ Cmail seeks the user’s e-mail address to check for recent e-mails. If a new e-
 
 #### `Required` Enter your e-mail address and password, then start: “*Cmail*” -> “*Start*”
 
-<img src="https://github.com/bedirhanbudak/Cmail/blob/main/readme/cmail.png" alt="Cmail" width="320"/>
+<img src="https://github.com/bedirhanbudak/Cmail/blob/main/readme/cmail_main.png" alt="Cmail" width="320"/>
 
 #### `Attention` Cmail may send responses to all unread e-mail.
 
