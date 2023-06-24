@@ -61,7 +61,7 @@ Cmail seeks the user’s e-mail address to check for recent e-mails. If a new e-
 
 ## Contact Me
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin.svg)](https://www.linkedin.com/in/bedirhan-budak) [![LinkedIn](https://img.shields.io/badge/Telegram-blue?logo=telegram.svg)](https://t.me/bedirhanb)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin.svg)](https://www.linkedin.com/in/bedirhan-budak) [![LinkedIn](https://img.shields.io/badge/Telegram-blue?logo=telegram.svg)](https://t.me/bedirhanbudak)
 
 ## License & Copyright
 
